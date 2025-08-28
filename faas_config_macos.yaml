@@ -1,0 +1,57 @@
+system:
+  default_mode: container  # Use container as default on macOS for better compatibility
+  max_concurrent_functions: 500  # Lower limit for macOS development
+  cold_start_timeout: 45  # Longer timeout for container starts on macOS
+  warm_instance_ttl: 300  # Shorter TTL for development (5 minutes)
+  api_gateway_port: 8000
+  api_gateway_host: 0.0.0.0
+  worker_start_port: 9000
+  function_storage_path: /tmp/faas_functions
+  logs_path: /tmp/faas_logs
+  metrics_path: /tmp/faas_metrics
+  container_runtime: docker
+  base_image: python:3.11-slim
+  container_memory_limit: 256Mi  # Higher default for containers
+  container_cpu_limit: 200m
+  process_isolation_level: lightweight  # Reduced isolation on macOS
+  process_memory_limit: 128Mi
+  process_cpu_limit: 100m
+  enable_user_namespaces: false  # Disable on macOS
+  enable_seccomp: false  # Disable on macOS
+  metrics_enabled: true
+  logging_level: INFO
+  enable_tracing: true
+
+functions:
+  example-function:
+    runtime: python3.11
+    execution_mode: container  # Force container mode for compatibility
+    handler: handle
+    timeout: 30
+    memory: 256Mi
+    cpu_limit: 100m
+    code_path: example_function.py
+    dependencies:
+      - requests==2.28.0
+    environment:
+      DEBUG: 'true'
+      PLATFORM: 'macos'
+    min_instances: 0
+    max_instances: 5  # Lower for development
+    scale_factor: 1.2
+    isolation_level: default
+    network_access: true
+    filesystem_access: readonly
+
+  hello-world:
+    runtime: python3.11
+    execution_mode: container
+    handler: handle
+    timeout: 15
+    memory: 128Mi
+    cpu_limit: 50m
+    dependencies: []
+    environment:
+      GREETING: 'Hello from macOS FaaS!'
+    min_instances: 0
+    max_instances: 3 
