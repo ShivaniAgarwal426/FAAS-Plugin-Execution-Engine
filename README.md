@@ -440,10 +440,6 @@ docker run -p 8000:8000 faas
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🆘 Support
 
 - **Issues**: Report bugs and feature requests via GitHub Issues
