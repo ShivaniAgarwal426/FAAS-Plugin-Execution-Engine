@@ -444,7 +444,6 @@ docker run -p 8000:8000 faas
 
 - **Issues**: Report bugs and feature requests via GitHub Issues
 - **Documentation**: Check the `/docs` directory for detailed documentation
-- **Community**: Join our community discussions
 
 ---
 
