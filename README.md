@@ -142,6 +142,46 @@ Authorization: Bearer <api-key>
 ```bash
 GET /functions
 Authorization: Bearer demo-key
+
+{
+    "functions": [
+        {
+            "config": {
+                "execution_mode": "container",
+                "max_instances": 5,
+                "memory": "256Mi",
+                "min_instances": 0,
+                "timeout": 30
+            },
+            "instances": [],
+            "name": "example-function",
+            "stats": {
+                "avg_response_time": 0,
+                "total_errors": 0,
+                "total_instances": 0,
+                "total_requests": 0
+            }
+        },
+        {
+            "config": {
+                "execution_mode": "process",
+                "max_instances": 10,
+                "memory": "128Mi",
+                "min_instances": 0,
+                "timeout": 15
+            },
+            "instances": [],
+            "name": "hello-world",
+            "stats": {
+                "avg_response_time": 0,
+                "total_errors": 0,
+                "total_instances": 0,
+                "total_requests": 0
+            }
+        }
+    ]
+}
+
 ```
 
 ##### Get Function Details
