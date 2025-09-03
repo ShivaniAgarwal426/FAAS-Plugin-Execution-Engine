@@ -1,0 +1,24 @@
+system:
+  default_mode: process
+  max_concurrent_functions: 1000
+  cold_start_timeout: 30
+  warm_instance_ttl: 600
+  api_gateway_port: 8000
+  function_storage_path: /tmp/faas_functions
+  container_runtime: docker
+  base_image: python:3.11-slim
+  process_isolation_level: strict
+  logging_level: INFO
+
+functions:
+  example-function:
+    runtime: python3.11
+    execution_mode: process
+    handler: handle
+    timeout: 30
+    memory: 256Mi
+    dependencies:
+      - requests==2.28.0
+    environment:
+      API_KEY: your-api-key
+      DEBUG: 'false' 
